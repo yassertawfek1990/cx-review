@@ -1,0 +1,1428 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Rankings Dashboard</title>
+    <style>
+      /* ================================
+   LUXURY LEADERBOARD – ONE FILE
+   5★ HOTEL EXECUTIVE THEME
+================================ */
+
+/* ---------- Color System ---------- */
+:root {
+    --luxury-navy: #0b0f19;
+    --luxury-charcoal: #1c1f26;
+    --luxury-gold: #c9a24d;
+    --luxury-gold-light: #e6d18a;
+    --luxury-bronze: #8c6a3d;
+    --luxury-silver: #bfc3c9;
+    --luxury-white: #f8f8f8;
+    --luxury-muted: #6b7280;
+}
+
+/* ---------- Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Body ---------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at top, #1c1f26, #0b0f19);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--luxury-white);
+}
+
+/* ---------- Layout ---------- */
+.container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ================================
+   PODIUM SECTION
+================================ */
+.podium-section {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.main-title {
+    font-size: 3.4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--luxury-gold-light);
+    margin-bottom: 60px;
+    text-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+.podium-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 35px;
+}
+
+.podium-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ---------- Avatars ---------- */
+.avatar-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid var(--luxury-gold);
+    background: linear-gradient(135deg, #2a2f3a, #151821);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: var(--luxury-gold-light);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* ---------- Trophy ---------- */
+.trophy {
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+}
+
+.team-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--luxury-white);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* ---------- Podium Blocks ---------- */
+.podium-block {
+    width: 140px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.podium-block.first {
+    height: 180px;
+    background: linear-gradient(180deg, #f5e7b2, #c9a24d);
+}
+
+.podium-block.second {
+    height: 140px;
+    background: linear-gradient(180deg, #e5e7eb, #9ca3af);
+}
+
+.podium-block.third {
+    height: 100px;
+    background: linear-gradient(180deg, #d6b08a, #8c6a3d);
+}
+
+.podium-block.fourth {
+    height: 80px;
+    background: linear-gradient(180deg, #4b5563, #1f2937);
+}
+
+/* ---------- Podium Text ---------- */
+.podium-rank {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #111;
+}
+
+.podium-stars {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.star-icon,
+.star-number {
+    color: #111;
+    font-size: 1.3rem;
+}
+
+/* ================================
+   CARDS SECTION
+================================ */
+.cards-section {
+    min-height: 50vh;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(14px);
+    padding: 50px 20px;
+}
+
+.cards-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--luxury-gold-light);
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+/* ---------- Cards Grid ---------- */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ---------- Team Card ---------- */
+.team-card {
+    background: linear-gradient(180deg, #ffffff, #f3f4f6);
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+}
+
+/* ---------- Card Avatar ---------- */
+.card-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 4px solid var(--luxury-gold);
+    background: linear-gradient(135deg, #2a2f3a, #151821);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--luxury-gold-light);
+    margin-bottom: 18px;
+}
+
+/* ---------- Card Text ---------- */
+.card-name {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.card-rank {
+    font-size: 0.9rem;
+    color: var(--luxury-muted);
+    margin-bottom: 14px;
+}
+
+.card-score {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--luxury-gold);
+    margin-bottom: 16px;
+}
+
+/* ---------- Stars ---------- */
+.stars-display {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.star {
+    font-size: 1.2rem;
+}
+
+.star.filled {
+    color: var(--luxury-gold);
+}
+
+.star.empty {
+    color: #d1d5db;
+}
+
+/* ---------- Activities ---------- */
+.activities {
+    width: 100%;
+    font-size: 0.85rem;
+    color: #4b5563;
+}
+
+.activity-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.activity-label {
+    font-weight: 500;
+}
+
+.activity-value {
+    font-weight: 700;
+    color: #111827;
+}
+
+/* ================================
+   WINNER GLOW
+================================ */
+.winner-glow,
+.leader-glow {
+    animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(201,162,77,0.4);
+    }
+    50% {
+        box-shadow: 0 0 45px rgba(201,162,77,0.7);
+    }
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.4rem;
+    }
+
+    .podium-container {
+        gap: 20px;
+    }
+
+    .avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .podium-block {
+        width: 105px;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="app" class="loading">Loading teams...</div>
+
+    <script>
+        // ⚠️ REPLACE THIS WITH YOUR GOOGLE SHEET URL
+        const SHEET_URL = "https://opensheet.elk.sh/1Hee4900dZVlgAm-MC3uaTIysSHIlAS6ndXRIAzDDARk/Sheet1";
+        
+        let teams = [];
+        let previousLeader = null;
+        let celebrationActive = false;
+
+        async function fetchTeamData() {
+            try {
+                const response = await fetch(SHEET_URL);
+                if (!response.ok) throw new Error('Failed to fetch data');
+                
+                const data = await response.json();
+                
+                teams = data.map(row => ({
+                    name: row.Team_Name || '',
+                    avatar: row.Avatar_Link || '',
+                    activity1: parseFloat(row.Activity1) || 0,
+                    activity2: parseFloat(row.Activity2) || 0,
+                    activity3: parseFloat(row.Activity3) || 0,
+                    activity4: parseFloat(row.Activity4) || 0,
+                    stars: parseFloat(row.Stars) || 0
+                })).filter(team => team.name);
+                
+                teams.sort((a, b) => b.stars - a.stars);
+                
+                // Check if leader changed or if their score increased
+                const currentLeader = teams.length > 0 ? teams[0] : null;
+                if (currentLeader && previousLeader) {
+                    // Trigger celebration if leader changed OR if current leader's score increased
+                    if (previousLeader.name !== currentLeader.name || previousLeader.stars < currentLeader.stars) {
+                        triggerCelebration(currentLeader);
+                    }
+                }
+                
+                if (currentLeader) {
+                    previousLeader = {...currentLeader};
+                }
+                
+                renderDashboard();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('app').innerHTML = `
+                    <div style="color: white; text-align: center; padding: 40px;">
+                        <h2>Error loading data</h2>
+                        <p>${error.message}</p>
+                        <p style="margin-top: 20px; font-size: 0.9rem;">Make sure your Google Sheet URL is correct</p>
+                    </div>
+                `;
+            }
+        }
+
+        function triggerCelebration(leader) {
+            // Remove previous celebration if exists
+            const existingOverlay = document.getElementById('celebration-overlay');
+            if (existingOverlay) existingOverlay.remove();
+
+            // Create celebration overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'celebration-overlay';
+            overlay.id = 'celebration-overlay';
+            document.body.appendChild(overlay);
+
+            // Show leader banner
+            const banner = document.createElement('div');
+            banner.className = 'celebration-banner';
+            banner.innerHTML = `
+                <h2>🎉 NEW LEADER! 🎉</h2>
+                <p>${leader.name}</p>
+                <p style="font-size: 1.5rem; margin-top: 10px;">⭐ ${leader.stars.toFixed(1)} Stars</p>
+            `;
+            document.body.appendChild(banner);
+
+            // Create confetti
+            createConfetti(overlay);
+
+            // Create fireworks
+            createFireworks(overlay);
+
+            // Create floating emojis
+            createFloatingEmojis(overlay);
+
+            // Remove banner after 4 seconds
+            setTimeout(() => {
+                banner.style.animation = 'banner-popup 0.3s ease-in reverse forwards';
+                setTimeout(() => banner.remove(), 300);
+            }, 4000);
+
+            // Remove overlay after 15 seconds
+            setTimeout(() => {
+                overlay.remove();
+            }, 15000);
+        }
+
+        function createConfetti(container) {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffd700', '#ff69b4'];
+            const confettiCount = 80;
+
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    container.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 20);
+            }
+
+            // Continue confetti for 12 seconds
+            const confettiInterval = setInterval(() => {
+                for (let i = 0; i < 8; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    container.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 5000);
+                }
+            }, 500);
+
+            setTimeout(() => clearInterval(confettiInterval), 12000);
+        }
+
+        function createFireworks(container) {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#ffd700'];
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight * 0.6;
+                    
+                    for (let j = 0; j < 25; j++) {
+                        const firework = document.createElement('div');
+                        firework.className = 'firework';
+                        firework.style.left = x + 'px';
+                        firework.style.top = y + 'px';
+                        firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        const angle = (Math.PI * 2 * j) / 25;
+                        const velocity = 50 + Math.random() * 80;
+                        firework.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+                        firework.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+                        
+                        container.appendChild(firework);
+                        
+                        setTimeout(() => firework.remove(), 1000);
+                    }
+                }, i * 800);
+            }
+        }
+
+        function createFloatingEmojis(container) {
+            const emojis = ['🎉', '🎊', '🏆', '⭐', '✨', '🎈', '🎆', '👏', '🥳', '🌟'];
+            
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'floating-emoji';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + '%';
+                    emoji.style.bottom = '-50px';
+                    emoji.style.animationDelay = Math.random() * 1 + 's';
+                    emoji.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    container.appendChild(emoji);
+
+                    setTimeout(() => emoji.remove(), 6000);
+                }, i * 150);
+            }
+        }
+
+        function renderStars(count) {
+            const fullStars = Math.floor(count);
+            let html = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                html += '<span class="star filled">★</span>';
+            }
+            
+            for (let i = fullStars; i < 10; i++) {
+                html += '<span class="star empty">★</span>';
+            }
+            
+            return html;
+        }
+
+        function renderAvatar(team, size = 'large') {
+            if (team.avatar) {
+                return `<img src="${team.avatar}" alt="${team.name}" class="avatar">`;
+            } else {
+                return `<div class="avatar">${team.name.charAt(0)}</div>`;
+            }
+        }
+
+        function renderCardAvatar(team) {
+            if (team.avatar) {
+                return `<img src="${team.avatar}" alt="${team.name}" class="card-avatar">`;
+            } else {
+                return `<div class="card-avatar">${team.name.charAt(0)}</div>`;
+            }
+        }
+
+        function renderDashboard() {
+            // Show all 4 teams on podium: 2nd, 1st, 3rd, 4th
+            let podiumOrder = [];
+            
+            if (teams.length >= 4) {
+                podiumOrder = [teams[1], teams[0], teams[2], teams[3]];
+            } else if (teams.length === 3) {
+                podiumOrder = [teams[1], teams[0], teams[2]];
+            } else if (teams.length === 2) {
+                podiumOrder = [teams[1], teams[0]];
+            } else if (teams.length === 1) {
+                podiumOrder = [teams[0]];
+            }
+            
+            const podiumClasses = ['second', 'first', 'third', 'fourth'];
+            const podiumRanks = ['2nd', '1st', '3rd', '4th'];
+            
+            let podiumHTML = '';
+            for (let i = 0; i < podiumOrder.length; i++) {
+                const team = podiumOrder[i];
+                const isLeader = team.name === teams[0].name;
+                const glowClass = isLeader ? 'leader-glow' : '';
+                
+                podiumHTML += `
+                    <div class="podium-item">
+                        <div class="avatar-container ${glowClass}">
+                            ${i === 1 || (podiumOrder.length === 1 && i === 0) ? '<div class="trophy">🏆</div>' : ''}
+                            ${renderAvatar(team)}
+                        </div>
+                        <div class="team-name">${team.name}${isLeader ? ' 👑' : ''}</div>
+                        <div class="podium-block ${podiumClasses[i]} ${glowClass}">
+                            <div class="podium-rank">${podiumRanks[i]}</div>
+                            <div class="podium-stars">
+                                <span class="star-icon">★</span>
+                                <span class="star-number">${team.stars.toFixed(1)}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            let cardsHTML = '';
+            teams.forEach((team, idx) => {
+                const isLeader = idx === 0;
+                const cardClass = isLeader ? 'leader-glow' : '';
+                
+                cardsHTML += `
+                    <div class="team-card ${cardClass}">
+                        ${renderCardAvatar(team)}
+                        <div class="card-name">${team.name}${isLeader ? ' 👑' : ''}</div>
+                        <div class="card-rank">Rank: #${idx + 1}</div>
+                        <div class="stars-display">
+                            ${renderStars(team.stars)}
+                        </div>
+                        <div class="card-score">${team.stars.toFixed(1)} / 10</div>
+                        <div class="activities">
+                            <div class="activity-row">
+                                <span class="activity-label">Activity 1:</span>
+                                <span class="activity-value">${team.activity1}</span>
+                            </div>
+                            <div class="activity-row">
+                                <span class="activity-label">Activity 2:</span>
+                                <span class="activity-value">${team.activity2}</span>
+                            </div>
+                            <div class="activity-row">
+                                <span class="activity-label">Activity 3:</span>
+                                <span class="activity-value">${team.activity3}</span>
+                            </div>
+                            <div class="activity-row">
+                                <span class="activity-label">Activity 4:</span>
+                                <span class="activity-value">${team.activity4}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('app').innerHTML = `
+                <div class="container">
+                    
+                  
+                    
+                    <div class="cards-section">
+                        <h2 class="cards-title">Team Details</h2>
+                        <div class="cards-container">
+                            ${cardsHTML}
+                        </div>
+                    </div>
+                    
+                
+            `;
+        }
+
+        // Initial load
+        fetchTeamData();
+
+        // Auto-refresh every 10 seconds
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Rankings Dashboard</title>
+    <style>
+      /* ================================
+   LUXURY LEADERBOARD – ONE FILE
+   5★ HOTEL EXECUTIVE THEME
+================================ */
+
+/* ---------- Color System ---------- */
+:root {
+    --luxury-navy: #0b0f19;
+    --luxury-charcoal: #1c1f26;
+    --luxury-gold: #c9a24d;
+    --luxury-gold-light: #e6d18a;
+    --luxury-bronze: #8c6a3d;
+    --luxury-silver: #bfc3c9;
+    --luxury-white: #f8f8f8;
+    --luxury-muted: #6b7280;
+}
+
+/* ---------- Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Body ---------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at top, #1c1f26, #0b0f19);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--luxury-white);
+}
+
+/* ---------- Layout ---------- */
+.container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ================================
+   PODIUM SECTION
+================================ */
+.podium-section {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.main-title {
+    font-size: 3.4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--luxury-gold-light);
+    margin-bottom: 60px;
+    text-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+.podium-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 35px;
+}
+
+.podium-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ---------- Avatars ---------- */
+.avatar-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid var(--luxury-gold);
+    background: linear-gradient(135deg, #2a2f3a, #151821);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: var(--luxury-gold-light);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* ---------- Trophy ---------- */
+.trophy {
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+}
+
+.team-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--luxury-white);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* ---------- Podium Blocks ---------- */
+.podium-block {
+    width: 140px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.podium-block.first {
+    height: 180px;
+    background: linear-gradient(180deg, #f5e7b2, #c9a24d);
+}
+
+.podium-block.second {
+    height: 140px;
+    background: linear-gradient(180deg, #e5e7eb, #9ca3af);
+}
+
+.podium-block.third {
+    height: 100px;
+    background: linear-gradient(180deg, #d6b08a, #8c6a3d);
+}
+
+.podium-block.fourth {
+    height: 80px;
+    background: linear-gradient(180deg, #4b5563, #1f2937);
+}
+
+/* ---------- Podium Text ---------- */
+.podium-rank {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #111;
+}
+
+.podium-stars {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.star-icon,
+.star-number {
+    color: #111;
+    font-size: 1.3rem;
+}
+
+/* ================================
+   CARDS SECTION
+================================ */
+.cards-section {
+    min-height: 50vh;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(14px);
+    padding: 50px 20px;
+}
+
+.cards-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--luxury-gold-light);
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+/* ---------- Cards Grid ---------- */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ---------- Team Card ---------- */
+.team-card {
+    background: linear-gradient(180deg, #ffffff, #f3f4f6);
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+}
+
+/* ---------- Card Avatar ---------- */
+.card-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 4px solid var(--luxury-gold);
+    background: linear-gradient(135deg, #2a2f3a, #151821);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--luxury-gold-light);
+    margin-bottom: 18px;
+}
+
+/* ---------- Card Text ---------- */
+.card-name {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.card-rank {
+    font-size: 0.9rem;
+    color: var(--luxury-muted);
+    margin-bottom: 14px;
+}
+
+.card-score {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--luxury-gold);
+    margin-bottom: 16px;
+}
+
+/* ---------- Stars ---------- */
+.stars-display {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.star {
+    font-size: 1.2rem;
+}
+
+.star.filled {
+    color: var(--luxury-gold);
+}
+
+.star.empty {
+    color: #d1d5db;
+}
+
+/* ---------- Activities ---------- */
+.activities {
+    width: 100%;
+    font-size: 0.85rem;
+    color: #4b5563;
+}
+
+.activity-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.activity-label {
+    font-weight: 500;
+}
+
+.activity-value {
+    font-weight: 700;
+    color: #111827;
+}
+
+/* ================================
+   WINNER GLOW
+================================ */
+.winner-glow,
+.leader-glow {
+    animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(201,162,77,0.4);
+    }
+    50% {
+        box-shadow: 0 0 45px rgba(201,162,77,0.7);
+    }
+}
+
+/* ================================
+   CELEBRATION STYLES
+================================ */
+.celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.celebration-banner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    text-align: center;
+    z-index: 10000;
+    animation: banner-popup 0.5s ease-out;
+}
+
+@keyframes banner-popup {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.celebration-banner h2 {
+    font-size: 3rem;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+.celebration-banner p {
+    font-size: 2rem;
+    color: #111;
+    font-weight: bold;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: firework-explode 1s ease-out forwards;
+}
+
+@keyframes firework-explode {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty));
+        opacity: 0;
+    }
+}
+
+.floating-emoji {
+    position: absolute;
+    font-size: 2rem;
+    animation: float-up linear forwards;
+}
+
+@keyframes float-up {
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.4rem;
+    }
+
+    .podium-container {
+        gap: 20px;
+    }
+
+    .avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .podium-block {
+        width: 105px;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="app" class="loading">Loading teams...</div>
+
+    <script>
+        // Google Sheet URLs
+        const TEAMS_SHEET_URL = "https://opensheet.elk.sh/1Hee4900dZVlgAm-MC3uaTIysSHIlAS6ndXRIAzDDARk/Sheet1";
+        const TIME_SHEET_URL = "https://opensheet.elk.sh/1oeGHCtJUOk29ocykas_oyFDF7Qxgl1rZEVtUlZehq2M/CX-Review";
+        
+        let teams = [];
+        let previousLeader = null;
+
+        async function fetchTeamData() {
+            try {
+                // Fetch both sheets
+                const [teamsResponse, timeResponse] = await Promise.all([
+                    fetch(TEAMS_SHEET_URL),
+                    fetch(TIME_SHEET_URL)
+                ]);
+                
+                
+                if (!teamsResponse.ok || !timeResponse.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                
+                const teamsData = await teamsResponse.json();
+                const timeData = await timeResponse.json();
+                console.log(teamsData)
+                console.log(timeData)
+                // Create a map of team times (team number -> time)
+                const timeMap = {};
+                timeData.forEach(row => {
+                    if (row.team && row.time) {
+                        const teamNum = String(row.team).trim();
+                        timeMap[teamNum] = parseFloat(row.time);
+                    }
+                });
+                
+                // Process teams data
+                teams = teamsData.map(row => ({
+                    name: row.Team_Name || '',
+                    teamNumber: String(row.team || '').trim(),
+                    avatar: row.Avatar_Link || '',
+                    activity1: parseFloat(row.Activity1) || 0,
+                    activity2: parseFloat(row.Activity2) || 0,
+                    activity3: parseFloat(row.Activity3) || 0,
+                    activity4: parseFloat(row.Activity4) || 0,
+                    stars: parseFloat(row.Stars) || 0,
+                    time: null,
+                    timeScore: 0
+                })).filter(team => team.name);
+                console.log(teams)
+                // Match teams with time data using team number
+                teams.forEach(team => {
+                    if (timeMap[team.teamNumber]) {
+                        team.time = timeMap[team.teamNumber];
+                    }
+                });
+                
+                // Sort teams by time (shortest first) to assign time scores
+                const teamsWithTime = teams.filter(t => t.time !== null).sort((a, b) => a.time - b.time);
+                const timeScores = [25, 20, 15, 10]; // Scores for 1st, 2nd, 3rd, 4th
+                
+                teamsWithTime.forEach((team, idx) => {
+                    if (idx < timeScores.length) {
+                        team.timeScore = timeScores[idx];
+                    }
+                });
+                
+                // Calculate total stars including time score
+                teams.forEach(team => {
+                    team.totalStars = team.stars + team.timeScore;
+                });
+                
+                // Sort by total stars
+                teams.sort((a, b) => b.totalStars - a.totalStars);
+                
+                // Check if leader changed or if their score increased
+                const currentLeader = teams.length > 0 ? teams[0] : null;
+                if (currentLeader && previousLeader) {
+                    // Trigger celebration if leader changed OR if current leader's score increased
+                    if (previousLeader.name !== currentLeader.name || previousLeader.totalStars < currentLeader.totalStars) {
+                        triggerCelebration(currentLeader);
+                    }
+                }
+                
+                if (currentLeader) {
+                    previousLeader = {...currentLeader};
+                }
+                
+                renderDashboard();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('app').innerHTML = `
+                    <div style="color: white; text-align: center; padding: 40px;">
+                        <h2>Error loading data</h2>
+                        <p>${error.message}</p>
+                        <p style="margin-top: 20px; font-size: 0.9rem;">Make sure your Google Sheet URLs are correct</p>
+                    </div>
+                `;
+            }
+        }
+
+        function triggerCelebration(leader) {
+            // Remove previous celebration if exists
+            const existingOverlay = document.getElementById('celebration-overlay');
+            if (existingOverlay) existingOverlay.remove();
+
+            // Create celebration overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'celebration-overlay';
+            overlay.id = 'celebration-overlay';
+            document.body.appendChild(overlay);
+
+            // Show leader banner
+            const banner = document.createElement('div');
+            banner.className = 'celebration-banner';
+            banner.innerHTML = `
+                <h2>🎉 NEW LEADER! 🎉</h2>
+                <p>${leader.name}</p>
+                <p style="font-size: 1.5rem; margin-top: 10px;">⭐ ${leader.totalStars.toFixed(1)} Stars</p>
+            `;
+            document.body.appendChild(banner);
+
+            // Create confetti
+            createConfetti(overlay);
+
+            // Create fireworks
+            createFireworks(overlay);
+
+            // Create floating emojis
+            createFloatingEmojis(overlay);
+
+            // Remove banner after 4 seconds
+            setTimeout(() => {
+                banner.style.animation = 'banner-popup 0.3s ease-in reverse forwards';
+                setTimeout(() => banner.remove(), 300);
+            }, 4000);
+
+            // Remove overlay after 15 seconds
+            setTimeout(() => {
+                overlay.remove();
+            }, 15000);
+        }
+
+        function createConfetti(container) {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffd700', '#ff69b4'];
+            const confettiCount = 80;
+
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    container.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 20);
+            }
+
+            // Continue confetti for 12 seconds
+            const confettiInterval = setInterval(() => {
+                for (let i = 0; i < 8; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    container.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 5000);
+                }
+            }, 500);
+
+            setTimeout(() => clearInterval(confettiInterval), 12000);
+        }
+
+        function createFireworks(container) {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#ffd700'];
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight * 0.6;
+                    
+                    for (let j = 0; j < 25; j++) {
+                        const firework = document.createElement('div');
+                        firework.className = 'firework';
+                        firework.style.left = x + 'px';
+                        firework.style.top = y + 'px';
+                        firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        const angle = (Math.PI * 2 * j) / 25;
+                        const velocity = 50 + Math.random() * 80;
+                        firework.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+                        firework.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+                        
+                        container.appendChild(firework);
+                        
+                        setTimeout(() => firework.remove(), 1000);
+                    }
+                }, i * 800);
+            }
+        }
+
+        function createFloatingEmojis(container) {
+            const emojis = ['🎉', '🎊', '🏆', '⭐', '✨', '🎈', '🎆', '👏', '🥳', '🌟'];
+            
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'floating-emoji';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + '%';
+                    emoji.style.bottom = '-50px';
+                    emoji.style.animationDelay = Math.random() * 1 + 's';
+                    emoji.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    container.appendChild(emoji);
+
+                    setTimeout(() => emoji.remove(), 6000);
+                }, i * 150);
+            }
+        }
+
+        function renderStars(count) {
+            const fullStars = Math.floor(count);
+            let html = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                html += '<span class="star filled">★</span>';
+            }
+            
+            for (let i = fullStars; i < 10; i++) {
+                html += '<span class="star empty">★</span>';
+            }
+            
+            return html;
+        }
+
+        function renderAvatar(team) {
+            if (team.avatar) {
+                return `<img src="${team.avatar}" alt="${team.name}" class="avatar">`;
+            } else {
+                return `<div class="avatar">${team.name.charAt(0)}</div>`;
+            }
+        }
+
+        function renderCardAvatar(team) {
+            if (team.avatar) {
+                return `<img src="${team.avatar}" alt="${team.name}" class="card-avatar">`;
+            } else {
+                return `<div class="card-avatar">${team.name.charAt(0)}</div>`;
+            }
+        }
+
+        function renderDashboard() {
+            // Show all 4 teams on podium: 2nd, 1st, 3rd, 4th
+            let podiumOrder = [];
+            
+            if (teams.length >= 4) {
+                podiumOrder = [teams[1], teams[0], teams[2], teams[3]];
+            } else if (teams.length === 3) {
+                podiumOrder = [teams[1], teams[0], teams[2]];
+            } else if (teams.length === 2) {
+                podiumOrder = [teams[1], teams[0]];
+            } else if (teams.length === 1) {
+                podiumOrder = [teams[0]];
+            }
+            
+            const podiumClasses = ['second', 'first', 'third', 'fourth'];
+            const podiumRanks = ['2nd', '1st', '3rd', '4th'];
+            
+            let podiumHTML = '';
+            for (let i = 0; i < podiumOrder.length; i++) {
+                const team = podiumOrder[i];
+                const isLeader = team.name === teams[0].name;
+                const glowClass = isLeader ? 'leader-glow' : '';
+                
+                podiumHTML += `
+                    <div class="podium-item">
+                        <div class="avatar-container ${glowClass}">
+                            ${i === 1 || (podiumOrder.length === 1 && i === 0) ? '<div class="trophy">🏆</div>' : ''}
+                            ${renderAvatar(team)}
+                        </div>
+                        <div class="team-name">${team.name}${isLeader ? ' 👑' : ''}</div>
+                        <div class="podium-block ${podiumClasses[i]} ${glowClass}">
+                            <div class="podium-rank">${podiumRanks[i]}</div>
+                            <div class="podium-stars">
+                                <span class="star-icon">★</span>
+                                <span class="star-number">${team.totalStars.toFixed(1)}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            let cardsHTML = '';
+            teams.forEach((team, idx) => {
+                const isLeader = idx === 0;
+                const cardClass = isLeader ? 'leader-glow' : '';
+                
+                cardsHTML += `
+                    <div class="team-card ${cardClass}">
+                        ${renderCardAvatar(team)}
+                        <div class="card-name">${team.name}${isLeader ? ' 👑' : ''}</div>
+                  
+                        <div class="card-score">${team.timeScore}/25</div>
+                                           </div>
+                `;
+            });
+
+            document.getElementById('app').innerHTML = `
+                <div class="container">
+                    <div class="cards-section">
+                        <h2 class="cards-title">CX-Masters</h2>
+                        <div class="cards-container">
+                            ${cardsHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initial load
+        fetchTeamData();
+
+
+    </script>
+</body>
+</html>
